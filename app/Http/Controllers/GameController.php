@@ -59,6 +59,8 @@ class GameController extends Controller
     {
         //Get Game by id, the id comes from the route.
         $game = Game::findOrFail($id);
+        // get rid of the data top key
+        GameResource::withoutWrapping();
         //return game as resource
         return new GameResource($game);
     }
