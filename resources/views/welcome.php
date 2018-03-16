@@ -71,7 +71,7 @@ $board1->board =  [[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
                    [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ]
                  ];
 
-$board1->board =  [[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
+$board2->board =  [[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
                    [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
                    [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
                    [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
@@ -91,7 +91,7 @@ function drawBoard($board){
     for($j=0; $j < 10; $j++){
       echo "<tr>";
       for($i=0; $i < 10; $i++){
-        echo "<td id='$id' onclick='getId(this)'> X </td>";
+        echo "<td id='$id' onclick='getId(this)'> {$board[$j][$i]} </td>";
         $id++;
       }
       echo "</tr>";
