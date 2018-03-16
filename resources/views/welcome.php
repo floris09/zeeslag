@@ -99,7 +99,7 @@ function getColor($x){
 
 function drawBoard($board){
   $id = 0;
-  echo "<table border=1>";
+  echo "<table>";
     for($j=0; $j < 10; $j++){
       echo "<tr>";
       for($i=0; $i < 10; $i++){
@@ -111,14 +111,32 @@ function drawBoard($board){
   echo "</table>";
 }
 
+function drawShips($ships){
+  $id = 0;
+  foreach($ships as $ship){
+    echo "<div style='width:".$ship->length * 50 ."px' class='ship'></div>";
+  }
+}
+
  ?>
 
 <html>
 <head>
   <style>
+    table td {
+      margin: 0;
+      padding: 0;
+    }
+
     td {
       width: 50px;
       height: 50px;
+    }
+
+    .ship {
+      height: 50px;
+      background-color: grey;
+      border: 1px solid black;
     }
   </style>
   <script>
@@ -129,9 +147,11 @@ function drawBoard($board){
 </head>
 <body>
 
-<?php drawBoard($board1->board); ?>
+<?php drawBoard($board1->board);
+      drawShips($ships1); ?>
 <br>
-<?php drawBoard($board2->board); ?>
+<?php drawBoard($board2->board);
+      drawShips($ships2);  ?>
 
 
 </body>
