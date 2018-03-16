@@ -71,7 +71,7 @@ $board1->board =  [[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
                    [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ]
                  ];
 
-$board1->board =  [[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
+$board2->board =  [[0 ,0 ,1 ,2 ,0 ,0 ,0 ,0 ,0 ,0 ],
                    [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
                    [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
                    [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
@@ -83,7 +83,19 @@ $board1->board =  [[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
                    [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ]
                  ];
 
-
+function getColor($x){
+  switch($x){
+    case 0:
+      return 'blue';
+      break;
+    case 1:
+      return 'grey';
+      break;
+    case 2:
+      return 'red';
+      break;
+  }
+}
 
 function drawBoard($board){
   $id = 0;
@@ -91,7 +103,7 @@ function drawBoard($board){
     for($j=0; $j < 10; $j++){
       echo "<tr>";
       for($i=0; $i < 10; $i++){
-        echo "<td id='$id' onclick='getId(this)'> X </td>";
+        echo "<td id='$id' style='background-color:".getColor($board[$j][$i])."'onclick='getId(this)'> </td>";
         $id++;
       }
       echo "</tr>";
@@ -103,6 +115,12 @@ function drawBoard($board){
 
 <html>
 <head>
+  <style>
+    td {
+      width: 50px;
+      height: 50px;
+    }
+  </style>
   <script>
     function getId(field){
       console.log(field.id);
