@@ -71,7 +71,7 @@ $board1->board =  [[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
                    [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ]
                  ];
 
-$board1->board =  [[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
+$board2->board =  [[0 ,0 ,1 ,2 ,0 ,0 ,0 ,0 ,0 ,0 ],
                    [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
                    [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
                    [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
@@ -83,15 +83,27 @@ $board1->board =  [[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
                    [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ]
                  ];
 
-
+function getColor($x){
+  switch($x){
+    case 0:
+      return 'blue';
+      break;
+    case 1:
+      return 'grey';
+      break;
+    case 2:
+      return 'red';
+      break;
+  }
+}
 
 function drawBoard($board){
   $id = 0;
-  echo "<table border=1>";
+  echo "<table>";
     for($j=0; $j < 10; $j++){
       echo "<tr>";
       for($i=0; $i < 10; $i++){
-        echo "<td id='$id' onclick='getId(this)'> X </td>";
+        echo "<td id='$id' style='background-color:".getColor($board[$j][$i])."'onclick='getId(this)'> </td>";
         $id++;
       }
       echo "</tr>";
@@ -99,10 +111,34 @@ function drawBoard($board){
   echo "</table>";
 }
 
+function drawShips($ships){
+  $id = 0;
+  foreach($ships as $ship){
+    echo "<div style='width:".$ship->length * 50 ."px' class='ship'></div>";
+  }
+}
+
  ?>
 
 <html>
 <head>
+  <style>
+    table td {
+      margin: 0;
+      padding: 0;
+    }
+
+    td {
+      width: 50px;
+      height: 50px;
+    }
+
+    .ship {
+      height: 50px;
+      background-color: grey;
+      border: 1px solid black;
+    }
+  </style>
   <script>
     function getId(field){
       console.log(field.id);
@@ -111,9 +147,11 @@ function drawBoard($board){
 </head>
 <body>
 
-<?php drawBoard($board1->board); ?>
+<?php drawBoard($board1->board);
+      drawShips($ships1); ?>
 <br>
-<?php drawBoard($board2->board); ?>
+<?php drawBoard($board2->board);
+      drawShips($ships2);  ?>
 
 
 </body>
