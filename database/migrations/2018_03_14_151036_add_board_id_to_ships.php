@@ -13,7 +13,7 @@ class AddBoardIdToShips extends Migration
      */
     public function up()
     {
-        Schema::table('ships', function (Blueprint $table) {
+        Schema::table('t4_ships', function (Blueprint $table) {
           $table->integer('board_id')->unsigned()->after('id');
           $table->foreign('board_id')->references('id')->on('boards');
         });
@@ -26,8 +26,8 @@ class AddBoardIdToShips extends Migration
      */
     public function down()
     {
-        Schema::table('ships', function (Blueprint $table) {
-          $table->dropForeign('ships_board_id_foreign');
+        Schema::table('t4_ships', function (Blueprint $table) {
+          $table->dropForeign('t4_ships_board_id_foreign');
           $table->dropColumn('board_id');
         });
     }

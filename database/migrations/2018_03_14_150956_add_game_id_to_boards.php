@@ -13,7 +13,7 @@ class AddGameIdToBoards extends Migration
      */
     public function up()
     {
-        Schema::table('boards', function (Blueprint $table) {
+        Schema::table('t4_boards', function (Blueprint $table) {
           $table->integer('game_id')->unsigned()->after('id');
           $table->foreign('game_id')->references('id')->on('games');
         });
@@ -26,8 +26,8 @@ class AddGameIdToBoards extends Migration
      */
     public function down()
     {
-        Schema::table('boards', function (Blueprint $table) {
-          $table->dropForeign('boards_game_id_foreign');
+        Schema::table('t4_boards', function (Blueprint $table) {
+          $table->dropForeign('t4_boards_game_id_foreign');
           $table->dropColumn('game_id');
         });
     }

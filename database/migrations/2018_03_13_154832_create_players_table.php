@@ -13,7 +13,7 @@ class CreatePlayersTable extends Migration
      */
     public function up()
     {
-        Schema::create('players', function (Blueprint $table) {
+        Schema::create('t4_players', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('score');
             $table->integer('won');
@@ -29,6 +29,6 @@ class CreatePlayersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('players');
+        Schema::dropIfExists('t4_players');
     }
 }
