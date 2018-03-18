@@ -8,14 +8,14 @@ class Player
     protected $fillable = [
         'score', 'won', 'lost',
     ];
-        
-    public function gamePlayer()
+
+    public function game()
     {
         return $this->belongsTo('App\Game');
     }
-    
-    public function getPlayerBoard(){
-        return $this->hasOne(App/Board);
+
+    public function board(){
+        return $this->hasOne('App\Board');
     }
-    
+
 }
