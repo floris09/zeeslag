@@ -1,5 +1,11 @@
 <?php
 
+$servername = "localhost:8889";
+$username = env("DB_USERNAME");
+$password = env("DB_PASSWORD");
+$db = env("DB_DATABASE");
+
+$conn = mysqli_connect($servername,$username,$password,$db);
 
 class Game {
   public $id;
@@ -98,13 +104,11 @@ function getColor($x){
 }
 
 function drawBoard($board){
-  $id = 0;
   echo "<table>";
     for($j=0; $j < 10; $j++){
       echo "<tr>";
       for($i=0; $i < 10; $i++){
-        echo "<td id='$id' style='background-color:".getColor($board[$j][$i])."'onclick='getId(this)'> </td>";
-        $id++;
+        echo "<td id='$j-$i' style='background-color:".getColor($board[$j][$i])."'onclick='placeShip(this)'> </td>";
       }
       echo "</tr>";
     }
@@ -112,9 +116,10 @@ function drawBoard($board){
 }
 
 function drawShips($ships){
-  $id = 0;
+  static $id = 0;
   foreach($ships as $ship){
-    echo "<div style='width:".$ship->length * 50 ."px' class='ship'></div>";
+    echo "<div onclick='selectShip(this)' id='ship$id' value='$ship->length' style='width:".$ship->length * 50 ."px' class='ship'></div>";
+    $id++;
   }
 }
 
@@ -140,9 +145,35 @@ function drawShips($ships){
     }
   </style>
   <script>
-    function getId(field){
-      console.log(field.id);
+    var selectedShip = '';
+
+    function placeShip(field){
+      if (selectedShip == '') {
+        console.log("No ship selected");
+      } else {
+        var ship = selectedShip;
+        console.log(field.id);
+        ship.parentNode.removeChild(ship);
+      }
     }
+
+    function selectShip(ship){
+      console.log(ship.id);
+      var ship = document.getElementById(ship.id);
+      selectedShip = ship;
+    }
+
+    // var xhttp = new XMLHttpRequest();
+    // xhttp.onreadystatechange = function() {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //        // Typical action to be performed when the document is ready:
+    //        document.getElementById("game").innerHTML = xhttp.responseText;
+    //     }
+    // };
+    // xhttp.open("POST", "/game", true);
+    // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // xhttp.send("id:1");
+
   </script>
 </head>
 <body>
@@ -153,6 +184,7 @@ function drawShips($ships){
 <?php drawBoard($board2->board);
       drawShips($ships2);  ?>
 
+<p id="game"></p>
 
 </body>
 </html>

@@ -43,7 +43,7 @@ class GameController extends Controller
         //check for put request. if its a put is. nneed to put in a game_id
         $game = $request->isMethod('put') ? Article::findOrFail($request->game_id) : new Game;
         $game->id = $request -> input('game_id');
-        
+
         if($game -> save()){
             return new GameResource($game);
         }
@@ -98,7 +98,7 @@ class GameController extends Controller
     {
     //Get Game by id, the id comes from the route.
         $game = Game::findOrFail($id);
-//    deleting the game    
+//    deleting the game
         if($game->delete()){
         return new GameResource($game);
         }
