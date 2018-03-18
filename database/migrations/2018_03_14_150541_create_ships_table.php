@@ -13,7 +13,7 @@ class CreateShipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ships', function (Blueprint $table) {
+        Schema::create('t4_ships', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('length');
             $table->string('type');
@@ -28,6 +28,6 @@ class CreateShipsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ships');
+        Schema::dropIfExists('t4_ships');
     }
 }

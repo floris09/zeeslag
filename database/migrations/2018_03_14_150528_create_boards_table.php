@@ -13,7 +13,7 @@ class CreateBoardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('boards', function (Blueprint $table) {
+        Schema::create('t4_boards', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->text('board');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateBoardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('boards');
+        Schema::dropIfExists('t4_boards');
     }
 }
