@@ -21,7 +21,7 @@
   }
  ?>
 
-<img class='logo' src='<?= './images/logo.png'; ?>' />
+<img class='logo' src='<?= './images/surfboard.png'; ?>' />
 
 <div class='form-container'>
   <p class='error'><?= $errorMessage; ?></p>
