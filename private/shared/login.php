@@ -21,7 +21,7 @@
   }
  ?>
 
-<img class='logo' src=<?= WWW_ROOT . '/images/logo.png' ?> />
+<img class='logo' src='<?= './images/logo.png'; ?>' />
 
 <div class='form-container'>
   <p class='error'><?= $errorMessage; ?></p>
