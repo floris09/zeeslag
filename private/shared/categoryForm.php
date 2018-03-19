@@ -22,7 +22,7 @@
            console.log(xhttp);
         }
     };
-    xhttp.open("POST", "/qien/marketplace/private/categories/create.php", true);
+    xhttp.open("POST", "../../private/actions/categories/create.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("data="+data);
   }

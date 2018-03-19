@@ -1,5 +1,5 @@
 <?php
-  require_once('../initialize.php');
+  require_once('../../initialize.php');
 
 
   if(isset($_POST['data'])){
@@ -24,7 +24,5 @@
 
   }
 
-
-
-
+  ob_end_flush();
  ?>
