@@ -13,6 +13,6 @@
   require_once('query_functions.php');
   require_once('models.php');
 
-  $db = db_connect();
+  $db = createconnection();
 
 ?>
