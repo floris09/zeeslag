@@ -1,1 +1,3 @@
-LALALALAL
+<?php
+
+JAJAJA
