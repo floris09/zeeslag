@@ -8,10 +8,32 @@
 
          categories.forEach(function(category){
            var div = document.createElement("div");
-           div.id = 'cat-'+category.id;
-           div.innerHTML = category.name;
+           var id = category.id;
+           div.id = 'cat-'+id;
+           div.innerHTML = category.name + " ";
+
+           var editDiv = document.createElement("div");
+           editDiv.className = 'icon';
+           editDiv.onclick = editCategory.bind(this, id, div);
+
+           var edit = document.createElement("i");
+           edit.className = "fas fa-pen-square";
+
+           editDiv.appendChild(edit);
+
+           var delDiv = document.createElement("div");
+           delDiv.className = 'icon';
+           delDiv.onclick = deleteCategory.bind(this, id, div);
+
+           var del = document.createElement("i");
+           del.className = "fas fa-trash-alt";
+
+           delDiv.appendChild(del);
+
            var container = document.getElementById('categories');
            container.appendChild(div);
+           div.appendChild(editDiv);
+           div.appendChild(delDiv);
          });
       }
   };
