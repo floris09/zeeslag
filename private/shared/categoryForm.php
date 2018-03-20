@@ -1,7 +1,7 @@
 
 <script>
 
-  function submit(){
+  function createCategory(){
     var obj = {};
     obj.name = document.getElementById('name').value;
     data = JSON.stringify(obj);
@@ -14,11 +14,15 @@
             var id = xhttp.responseText;
             var div = document.createElement("div");
             div.id = 'cat-'+id;
-            div.innerHTML = obj.name;
+
+            var nameDiv = document.createElement("div");
+            nameDiv.innerHTML = obj.name;
+            nameDiv.className = 'inline';
+            div.appendChild(nameDiv);
 
             var editDiv = document.createElement("div");
             editDiv.className = 'icon';
-            editDiv.onclick = editCategory.bind(this, id, div);
+            editDiv.onclick = editCategory.bind(this, id, nameDiv);
 
             var edit = document.createElement("i");
             edit.className = "fas fa-pen-square";
@@ -64,11 +68,46 @@
     xhttp.send("data="+data);
   }
 
-  function editCategory(){}
+  function editCategory(id, nameDiv){
+    var input = document.createElement('input');
+    input.placeholder = 'New name...';
+    input.id = 'edit';
+
+    var submit = document.createElement('button');
+    submit.innerHTML = 'Submit';
+
+    var parent = nameDiv.parentNode;
+    parent.appendChild(input);
+    parent.appendChild(submit);
+    submit.onclick = editSubmit.bind(this, id, nameDiv, parent, input, submit);
+  }
+
+  function editSubmit(id, nameDiv, parent, input, submit){
+    var obj = {};
+    obj.id = id;
+    var value = document.getElementById('edit').value;
+    obj.name = value;
+    data = JSON.stringify(obj);
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log("successfully updated");
+
+          nameDiv.innerHTML = value;
+
+          parent.removeChild(input);
+          parent.removeChild(submit);
+        }
+    };
+    xhttp.open("POST", "../../private/actions/categories/update.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("data="+data);
+  }
 
 </script>
 
 <input type='text' id='name' placeholder='Category name...'>
-<button onclick='submit()'> Create </button>
+<button onclick='createCategory()'> Create </button>
 
 <p id='message'></p>

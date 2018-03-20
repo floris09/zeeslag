@@ -3,6 +3,9 @@
   margin-top: 50px;
 }
 
+.inline {
+  display: inline;
+}
 
 input {
   display: block;
