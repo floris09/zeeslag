@@ -24,13 +24,19 @@ if (isset($_GET['logout'])) {
   <title>Market Place</title>
 
 </head>
-<body>
+<body id='admin-body'>
+  <div id='admin-container'>
+    <div id='admin-nav'>
+      <a href='index.php?logout=true'><div class="nav-div">Log Out</div></a>
+    </div>
+    <div id='categories-container' class='admin-options-container'>
 
-<a href='index.php?logout=true'><p>LOGOUT</p></a>
+      <?php include(SHARED_PATH . '/categoryForm.php'); ?>
 
-<?php include(SHARED_PATH . '/categoryForm.php'); ?>
+      <?php include(SHARED_PATH . '/categories.php'); ?>
 
-<?php include(SHARED_PATH . '/categories.php'); ?>
+    </div>
+  </div>
 
 </body>
 

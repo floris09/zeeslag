@@ -18,7 +18,6 @@
             var nameDiv = document.createElement("div");
             nameDiv.innerHTML = obj.name;
             nameDiv.className = 'inline';
-            div.appendChild(nameDiv);
 
             var editDiv = document.createElement("div");
             editDiv.className = 'icon';
@@ -41,7 +40,8 @@
             var container = document.getElementById('categories');
             container.appendChild(div);
             div.appendChild(editDiv);
-            div.appendChild(delDiv)
+            div.appendChild(delDiv);
+            div.appendChild(nameDiv);
         }
     };
     xhttp.open("POST", "../../private/actions/categories/create.php", true);
