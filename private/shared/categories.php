@@ -10,11 +10,15 @@
            var div = document.createElement("div");
            var id = category.id;
            div.id = 'cat-'+id;
-           div.innerHTML = category.name + " ";
+
+           var nameDiv = document.createElement("div");
+           nameDiv.innerHTML = category.name;
+           nameDiv.className = 'inline';
+           div.appendChild(nameDiv);
 
            var editDiv = document.createElement("div");
            editDiv.className = 'icon';
-           editDiv.onclick = editCategory.bind(this, id, div);
+           editDiv.onclick = editCategory.bind(this, id, nameDiv);
 
            var edit = document.createElement("i");
            edit.className = "fas fa-pen-square";

@@ -65,6 +65,10 @@ input[type=number]{
   display: inline;
 }
 
+.inline {
+  display: inline;
+}
+
 .float-left {
   float: left;
 }
