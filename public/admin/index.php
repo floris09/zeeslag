@@ -28,6 +28,8 @@ if (isset($_GET['logout'])) {
 
 <?php include(SHARED_PATH . '/categoryForm.php'); ?>
 
+<?php include(SHARED_PATH . '/categories.php'); ?>
+
 </body>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

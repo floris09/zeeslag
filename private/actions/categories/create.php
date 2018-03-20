@@ -14,8 +14,7 @@
 
     $result = mysqli_query($db, $sql);
     if ($result) {
-      echo "Category successfully created.";
-      return $db->insert_id;
+      echo $db->insert_id;
     } else {
       echo mysqli_error($db) . ". Please try again.";
       db_disconnect($db);
