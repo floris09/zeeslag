@@ -14,7 +14,6 @@
            var nameDiv = document.createElement("div");
            nameDiv.innerHTML = category.name;
            nameDiv.className = 'inline';
-           div.appendChild(nameDiv);
 
            var editDiv = document.createElement("div");
            editDiv.className = 'icon';
@@ -35,9 +34,10 @@
            delDiv.appendChild(del);
 
            var container = document.getElementById('categories');
-           container.appendChild(div);
            div.appendChild(editDiv);
            div.appendChild(delDiv);
+           div.appendChild(nameDiv);
+           container.appendChild(div);
          });
       }
   };
@@ -46,5 +46,6 @@
 
 
 </script>
+
 
 <div id='categories'></div>

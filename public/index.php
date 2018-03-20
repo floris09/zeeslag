@@ -10,7 +10,7 @@
 
 </head>
 
-<body>
+<body id='login-body'>
 
 <?php include(SHARED_PATH . '/login.php'); ?>
 
