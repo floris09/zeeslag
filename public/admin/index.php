@@ -33,7 +33,7 @@ if (isset($_GET['logout'])) {
 
       <?php include(SHARED_PATH . '/categoryForm.php'); ?>
 
-      <?php include(SHARED_PATH . '/categories.php'); ?>
+      <?php include(SHARED_PATH . '/adminCategories.php'); ?>
 
     </div>
   </div>
