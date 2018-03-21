@@ -1,14 +1,5 @@
 <?php
 
-  function find_all($table) {
-    global $db;
-
-    $sql = "SELECT * FROM $table";
-    $result = mysqli_query($db, $sql);
-    confirm_result_set($result);
-    return $result;
-  }
-
   function getAllCategories(){
     global $db;
 
@@ -31,6 +22,80 @@
     $categories = json_encode($categories);
     return $categories;
   }
+
+
+  function getAllProducts(){
+    global $db;
+
+    $sql = "SELECT * FROM products";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+
+    $products = [];
+
+    if($result->num_rows > 0){
+      while($row = $result->fetch_assoc()){
+        $product = new Product();
+        $product->id = $row['id'];
+        $product->user_id = $row['user_id'];
+        $product->location_id = $row['location_id'];
+        $product->category_id = $row['category_id'];
+        $product->name = $row['name'];
+        $product->image_url = $row['image_url'];
+        $product->description = $row['description'];
+        $product->price = $row['price'];
+        $product->type = $row['type'];
+        $product->state = $row['state'];
+        $product->size = $row['size'];
+        $product->color = $row['color'];
+        $product->brand = $row['brand'];
+        $product->coordinates = $row['coordinates'];
+
+        $products[] = $product;
+      }
+    }
+
+    $products = json_encode($products);
+    return $products;
+  }
+
+
+  function getAllSurfboards(){
+    global $db;
+
+    $sql = "SELECT * FROM surfboards";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+
+    $surfboards = [];
+
+    if($result->num_rows > 0){
+      while($row = $result->fetch_assoc()){
+        $product = new Product();
+        $product->id = $row['id'];
+        $product->user_id = $row['user_id'];
+        $product->location_id = $row['location_id'];
+        $product->category_id = $row['category_id'];
+        $product->name = $row['name'];
+        $product->image_url = $row['image_url'];
+        $product->description = $row['description'];
+        $product->price = $row['price'];
+        $product->type = $row['type'];
+        $product->state = $row['state'];
+        $product->size = $row['size'];
+        $product->color = $row['color'];
+        $product->brand = $row['brand'];
+        $product->coordinates = $row['coordinates'];
+        $product->volume = $row['volume'];
+
+        $surfboards[] = $surfboard;
+      }
+    }
+
+    $surfboards = json_encode($surfboards);
+    return $surfboards;
+  }
+
 
   function find_user($username) {
     global $db;

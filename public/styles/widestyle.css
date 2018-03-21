@@ -1,3 +1,111 @@
+#admin-body {
+  background-image: url('../images/wave.png');
+  padding-top: 50px;
+}
+
+#admin-nav {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-bottom: 100px;
+  background-color: black;
+}
+
+.nav-div {
+  height: 30px;
+  width: 100px;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 20px;
+  font-family: monospace;
+  font-size: 20px;
+  border-right: 1px solid white;
+}
+
+#admin-nav a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-add-icon {
+  color: white;
+  font-size: 30px;
+  float: right;
+  margin: 10px;
+}
+
+#login-body  {
+  padding-top: 50px;
+  text-align: center;
+}
+
+#guest-body {
+  padding-top: 50px;
+  padding-left: 150px;
+  background-image: url('../images/wave.png');
+}
+
+.sidebar-left {
+  height: 100%;
+  width: 150px;
+  position: fixed;
+  left: 0;
+  top: 50px;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.sidebar-left-div {
+  height: 50px;
+  color: white;
+  font-family: monospace;
+  padding: 15px;
+  border-bottom: 1px solid white;
+}
+
+.guest-product-div {
+  border: 1px solid black;
+  width: 30%;
+  height: 250px;
+  display: inline-block;
+  margin-left: 2.5%;
+  margin-top: 5px;
+  background-color: black;
+  border-radius: 10px;
+}
+
+.guest-product-image-div {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  top: 13px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.guest-product-name-div {
+  color: white;
+  margin-left: 10px;
+  font-family: monospace;
+  font-size: 15px;
+}
+
+.admin-options-container {
+  width: 200px;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 20px;
+  float: left;
+  background-color: rgba(255,255,255,0.5);
+}
+
+.icon {
+  display: inline;
+  margin: 2px;
+}
+
 .logo {
   width: 60%;
   margin-top: 50px;
@@ -5,6 +113,11 @@
 
 .inline {
   display: inline;
+}
+
+h3 {
+  font-family: monospace;
+  margin-bottom: 10px;
 }
 
 input {
@@ -44,7 +157,7 @@ input[type=submit]{
 }
 
 input[type=number]{
-  width: 40px;
+  width: 200px;
   border: 1px solid black;
   display: inline-block;
 }

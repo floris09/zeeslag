@@ -15,19 +15,160 @@ if (isset($_GET['logout'])) {
 <head>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
   <link rel='stylesheet' href=<?= '../styles/style.css?'.time(); ?> />
   <link rel="stylesheet" media="screen and (min-width: 900px)" href=<?= "../styles/widestyle.css?".time(); ?> >
   <title>Market Place</title>
+
+  <script>
+
+    function addProduct(){
+
+      var formFields = ['name', 'category', 'location', 'description', 'price', 'type', 'state', 'size', 'color', 'brand', 'image'];
+
+      var addForm = document.createElement('div');
+      var container = document.getElementById('productForm');
+      container.appendChild(addForm);
+
+      var name = document.createElement('input');
+      name.type = 'text'; name.id = 'name'; name.placeholder = 'Name...';
+      addForm.appendChild(name);
+
+      var select = document.createElement('select');
+      select.id = 'category';
+      addForm.appendChild(select);
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+             var categories = JSON.parse(xhttp.responseText);
+             categories.forEach(function(category){
+               var option = document.createElement('option');
+               option.value =  category.id;
+               option.innerHTML = category.name;
+               select.appendChild(option);
+             })
+             };
+          }
+
+      xhttp.open("GET", "../../private/actions/categories/getAll.php", true);
+      xhttp.send();
+
+      var selectLocation = document.createElement('select');
+      selectLocation.id = 'location';
+      addForm.appendChild(selectLocation);
+
+      var xhttp2 = new XMLHttpRequest();
+      xhttp2.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              var locations = JSON.parse(xhttp2.responseText);
+              locations.forEach(function(location){
+                var option = document.createElement('option');
+                option.value =  location.id;
+                option.innerHTML = location.name;
+                selectLocation.appendChild(option);
+              })
+              };
+          }
+
+      xhttp2.open("GET", "../../private/actions/locations/getAll.php", true);
+      xhttp2.send();
+
+      var selectState = document.createElement('select');
+      selectState.id = 'state';
+      addForm.appendChild(selectState);
+
+      var stateOptions = ['Like New','Good Condition','Used'];
+
+      stateOptions.forEach(function(state){
+        var option = document.createElement('option');
+        option.value =  state;
+        option.innerHTML = state;
+        selectState.appendChild(option);
+      })
+
+      var priceLabel = document.createElement('label');
+      priceLabel.innerHTML = 'Price';
+      addForm.appendChild(priceLabel);
+
+      var price = document.createElement('input');
+      price.type = 'number'; price.id = 'price';
+      addForm.appendChild(price)
+
+      var description = document.createElement('input');
+      description.type = 'textarea'; description.id = 'description'; description.placeholder = 'Description...';
+      addForm.appendChild(description);
+
+      var size = document.createElement('input');
+      size.type = 'text'; size.id = 'size'; size.placeholder = 'Size...';
+      addForm.appendChild(size);
+
+      var color = document.createElement('input');
+      color.type = 'text'; color.id = 'color'; color.placeholder = 'Color...';
+      addForm.appendChild(color);
+
+      var brand = document.createElement('input');
+      brand.type = 'text'; brand.id = 'brand'; brand.placeholder = 'Brand...';
+      addForm.appendChild(brand);
+
+      var image = document.createElement('input');
+      image.type = 'file'; image.id = 'image'; image.accept = 'image/*'; image.placeholder = 'Image...'; image.multiple = true;
+      addForm.appendChild(image);
+
+      var submit = document.createElement('button');
+      submit.onclick = function(){console.log(document.getElementById('image').files[0]);}
+      addForm.appendChild(submit);
+    }
+
+    function submitProduct(){
+        var obj = {};
+        obj.name = document.getElementById('name').value;
+        obj.user_id = document.getElementById('user_id').value;
+        obj.location_id = document.getElementById('location_id').value;
+        obj.category_id = document.getElementById('category_id').value;
+        obj.image_url = document.getElementById('image_url').value;
+        obj.description = document.getElementById('description').value;
+        obj.price = document.getElementById('price').value;
+        obj.type = document.getElementById('type').value;
+        obj.state = document.getElementById('state').value;
+        obj.size = document.getElementById('size').value;
+        obj.color = document.getElementById('color').value;
+        obj.brand = document.getElementById('brand').value;
+        obj.coordinates = document.getElementById('coordinates').value;
+        data = JSON.stringify(obj);
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+
+            }
+        };
+        xhttp.open("POST", "../../private/actions/producs/create.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("data="+data);
+    }
+
+  </script>
 
 </head>
 <body id="guest-body">
 
   <div id='admin-nav'>
     <a href='index.php?logout=true'><div class="nav-div">Log Out</div></a>
+    <i onclick='addProduct()' class="fas fa-plus-circle nav-add-icon"></i>
   </div>
 
+  <div class='sidebar-left'>
     <?php include('../../private/shared/guestCategories.php'); ?>
+  </div>
 
+  <div id='productForm'></div>
+
+  <div id='guests-all-products-container'>
+    <?php include('../../private/shared/guestProducts.php'); ?>
+  </div>
 </body>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>
