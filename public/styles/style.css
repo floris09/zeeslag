@@ -38,6 +38,28 @@
   text-align: center;
 }
 
+#guest-body {
+  padding-top: 50px;
+  background-image: url('../images/wave.png');
+}
+
+.sidebar-left {
+  height: 100%;
+  width: 150px;
+  position: fixed;
+  left: 0;
+  top: 50px;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.sidebar-left-div {
+  height: 50px;
+  color: white;
+  font-family: monospace;
+  padding: 15px;
+  border-bottom: 1px solid white;
+}
+
 .form-container {
   width: 80%;
   text-align: center;
