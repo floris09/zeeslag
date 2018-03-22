@@ -40,6 +40,7 @@
 
 #guest-body {
   padding-top: 50px;
+  padding-left: 150px;
   background-image: url('../images/wave.png');
 }
 
@@ -90,7 +91,7 @@ input[type=submit]{
 }
 
 input[type=number]{
-  width: 40px;
+  width: 200px;
   border: 1px solid black;
   display: inline-block;
 }

@@ -1,5 +1,4 @@
-<div class='sidebar-left'>
-  <?php
+<?php
     $categories = getAllCategories();
     $categories = json_decode($categories);
 
@@ -8,6 +7,5 @@
               $category->name
             </div>";
     }
-    
-  ?>
-</div>
+
+?>
