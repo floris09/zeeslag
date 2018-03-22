@@ -1,4 +1,4 @@
-<script>
+
 
  function Form() {
 
@@ -16,10 +16,10 @@
     this.form.appendChild(input);
   }
 
-  this.number = function(id, label){
+  this.number = function(id, text){
     var div = document.createElement('div');
     var label = document.createElement('label');
-    label.innerHTML = label;
+    label.innerHTML = text;
     var input = document.createElement('input');
     input.type = 'number'; input.id = id;
     div.appendChild(label);
@@ -27,10 +27,10 @@
     this.form.appendChild(div);
   }
 
-  this.date = function(id, label){
+  this.date = function(id, text){
     var div = document.createElement('div');
     var label = document.createElement('label');
-    label.innerHTML = label;
+    label.innerText = text;
     var input = document.createElement('input');
     input.type = 'date'; input.id = id;
     div.appendChild(label);
@@ -38,9 +38,9 @@
     this.form.appendChild(div);
   }
 
-  this.submit = function(onclick, value){
+  this.button = function(onclick, value){
     var submit = document.createElement('button');
-    submit.onclick = onclick; submit.value = value;
+    submit.onclick = onclick; submit.innerHTML = value;
     this.form.appendChild(submit);
   }
 
@@ -48,5 +48,3 @@
     return this.form;
   }
 }
-
-</script>
