@@ -23,22 +23,11 @@ if (isset($_GET['logout'])) {
   <link rel="stylesheet" media="screen and (min-width: 900px)" href=<?= "../styles/widestyle.css?".time(); ?> >
   <title>Market Place</title>
 
-    <?php include('../../private/js/models.php') ?>
-
-  <script>
-
-    var form = new Form();
-    form.text('name','Name...');
-    form.text('city','City...');
-    form.submit('submit()','Submit');
-    form = form.return();
-    var formdiv = document.getElementById('form')
-    console.log(form);
-
-  </script>
+  <script src='../../private/js/models.js'></script>
 
 </head>
 <body id='admin-body'>
+  <div id='formdiv'></div>
   <div id='admin-container'>
     <div id='admin-nav'>
       <a href='index.php?logout=true'><div class="nav-div">Log Out</div></a>
@@ -50,7 +39,6 @@ if (isset($_GET['logout'])) {
 
       <?php include(SHARED_PATH . '/adminCategories.php'); ?>
 
-      <div id='form'></div>
     </div>
   </div>
 
