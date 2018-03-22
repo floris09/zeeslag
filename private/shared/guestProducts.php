@@ -1,6 +1,6 @@
 <?php
-    $products = getAllProducts();
-    $surfboards = getAllSurfboards();
+    $products = getRecentProducts(3);
+    $surfboards = getRecentSurfboards(3);
     $products = json_decode($products);
     $surfboards = json_decode($surfboards); ?>
 
@@ -13,7 +13,7 @@
       echo "<div class='guest-product-div' id='prod-$product->id'>
               <div class='guest-product-name-div'>
                 $product->name <br>
-                $product->price
+                $product->price IDR
               </div>
               <div class='guest-product-image-div' style='background-image:url($product->image_url)'></div>
             </div>";
