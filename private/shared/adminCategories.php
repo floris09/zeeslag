@@ -3,8 +3,9 @@
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
+
          var categories = JSON.parse(xhttp.responseText);
-         console.log(categories);
+         console.log(xhttp.responseText);
 
          categories.forEach(function(category){
            var div = document.createElement("div");
