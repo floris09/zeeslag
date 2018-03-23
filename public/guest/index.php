@@ -28,8 +28,7 @@ if (isset($_GET['logout'])) {
       var formFields = ['name', 'category', 'location', 'description', 'price', 'type', 'state', 'size', 'color', 'brand', 'image'];
 
       var addForm = document.createElement('div');
-      var container = document.getElementById('productForm');
-      container.appendChild(addForm);
+      addForm.id = 'productForm';
 
       var name = document.createElement('input');
       name.type = 'text'; name.id = 'name'; name.placeholder = 'Name...';
@@ -117,14 +116,17 @@ if (isset($_GET['logout'])) {
       addForm.appendChild(image);
 
       var submit = document.createElement('button');
-      submit.onclick = function(){console.log(document.getElementById('image').files[0]);}
+      submit.onclick = submitProduct.bind(addForm);
       addForm.appendChild(submit);
+
+      var container = document.getElementById('form-container');
+      container.appendChild(addForm);
     }
 
     function submitProduct(){
         var obj = {};
         obj.name = document.getElementById('name').value;
-        obj.user_id = document.getElementById('user_id').value;
+        // obj.user_id = document.getElementById('user_id').value;
         obj.location_id = document.getElementById('location_id').value;
         obj.category_id = document.getElementById('category_id').value;
         obj.image_url = document.getElementById('image_url').value;
@@ -135,7 +137,6 @@ if (isset($_GET['logout'])) {
         obj.size = document.getElementById('size').value;
         obj.color = document.getElementById('color').value;
         obj.brand = document.getElementById('brand').value;
-        obj.coordinates = document.getElementById('coordinates').value;
         data = JSON.stringify(obj);
 
         var xhttp = new XMLHttpRequest();
@@ -145,10 +146,11 @@ if (isset($_GET['logout'])) {
 
             }
         };
-        xhttp.open("POST", "../../private/actions/producs/create.php", true);
+        xhttp.open("POST", "../../private/actions/products/create.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("data="+data);
     }
+
 
   </script>
 
@@ -164,7 +166,7 @@ if (isset($_GET['logout'])) {
     <?php include('../../private/shared/guestCategories.php'); ?>
   </div>
 
-  <div id='productForm'></div>
+  <div id='form-container'></div>
 
   <div id='guests-all-products-container'>
     <?php include('../../private/shared/guestProducts.php'); ?>

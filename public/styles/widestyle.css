@@ -47,6 +47,25 @@
   background-image: url('../images/wave.png');
 }
 
+@keyframes slide-down {
+    0%   {top:-250px;}
+    20%  {top:-200px;}
+    40%  {top:-150px;}
+    60%  {top:-100px;}
+    80%  {top:-50px;}
+    100% {top:0px;}
+}
+
+#productForm {
+  background-color: rgba(0,0,0,0.6);
+  position: relative;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-name: slide-down;
+  padding: 10px;
+  z-index: -1;
+}
+
 .sidebar-left {
   height: 100%;
   width: 150px;
