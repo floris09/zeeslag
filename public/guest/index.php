@@ -25,6 +25,10 @@ if (isset($_GET['logout'])) {
 
     function addProduct(){
 
+      var icon = document.getElementById('addIcon');
+      icon.style = 'animation-name: rotate-right';
+      icon.onclick = closeForm;
+
       var formFields = ['name', 'category', 'location', 'description', 'price', 'type', 'state', 'size', 'color', 'brand', 'image'];
 
       var addForm = document.createElement('div');
@@ -148,12 +152,28 @@ if (isset($_GET['logout'])) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-              console.log(xhttp.responseText);
+              var form = document.getElementById('productForm');
+              form.innerHTML = 'Your product has been added!';
             }
         };
         xhttp.open("POST", "../../private/actions/products/create.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("data="+data);
+    }
+
+    function closeForm(){
+      var icon = document.getElementById('addIcon');
+      icon.style = 'animation-name: rotate-left';
+      icon.onclick = addProduct;
+
+      var form = document.getElementById('productForm');
+      form.style = 'animation-name: slide-up';
+
+      setTimeout(function(){
+        var form = document.getElementById('productForm');
+        document.getElementById('form-container').removeChild(form);
+        }, 500)
+
     }
 
 
@@ -164,7 +184,7 @@ if (isset($_GET['logout'])) {
 
   <div id='admin-nav'>
     <a href='index.php?logout=true'><div class="nav-div">Log Out</div></a>
-    <i onclick='addProduct()' class="fas fa-plus-circle nav-add-icon"></i>
+    <i id='addIcon' onclick='addProduct()' class="fas fa-plus-circle nav-add-icon"></i>
   </div>
 
   <div class='sidebar-left'>
