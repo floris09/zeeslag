@@ -11,6 +11,7 @@
   left: 0;
   margin-bottom: 100px;
   background-color: black;
+  z-index: 2;
 }
 
 .nav-div {
@@ -45,6 +46,29 @@
   padding-top: 50px;
   padding-left: 150px;
   background-image: url('../images/wave.png');
+}
+
+@keyframes slide-down {
+    0%   {top:-250px;}
+    10%  {top:-225px;}
+    20%  {top:-200px;}
+    30%  {top:-175px;}
+    40%  {top:-150px;}
+    50%  {top:-125px;}
+    60%  {top:-100px;}
+    70%  {top:-75px;}
+    80%  {top:-50px;}
+    90%  {top:-25px;}
+    100% {top:0px;}
+}
+
+#productForm {
+  background-color: rgba(0,0,0,0.6);
+  position: relative;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-name: slide-down;
+  padding: 10px;
 }
 
 .sidebar-left {
