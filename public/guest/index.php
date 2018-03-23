@@ -26,7 +26,8 @@ if (isset($_GET['logout'])) {
     function addProduct(){
 
       var icon = document.getElementById('addIcon');
-      icon.style = 'animation-name: rotate';
+      icon.style = 'animation-name: rotate-right';
+      icon.onclick = closeForm;
 
       var formFields = ['name', 'category', 'location', 'description', 'price', 'type', 'state', 'size', 'color', 'brand', 'image'];
 
@@ -151,12 +152,28 @@ if (isset($_GET['logout'])) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-              console.log(xhttp.responseText);
+              var form = document.getElementById('productForm');
+              form.innerHTML = 'Your product has been added!';
             }
         };
         xhttp.open("POST", "../../private/actions/products/create.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("data="+data);
+    }
+
+    function closeForm(){
+      var icon = document.getElementById('addIcon');
+      icon.style = 'animation-name: rotate-left';
+      icon.onclick = addProduct;
+
+      var form = document.getElementById('productForm');
+      form.style = 'animation-name: slide-up';
+
+      setTimeout(function(){
+        var form = document.getElementById('productForm');
+        document.getElementById('form-container').removeChild(form);
+        }, 500)
+
     }
 
 

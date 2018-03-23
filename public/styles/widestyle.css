@@ -11,7 +11,7 @@
   left: 0;
   margin-bottom: 100px;
   background-color: black;
-  z-index: 2;
+  z-index: 3;
 }
 
 .nav-div {
@@ -41,27 +41,50 @@
   background-image: url('../images/wave.png');
 }
 
-@keyframes rotate {
-  0% {transform: rotate(0deg);}
+@keyframes rotate-right {
+  0% {transform: rotate(0deg);  color: white}
   20% {transform: rotate(9deg);}
   40% {transform: rotate(18deg);}
   60% {transform: rotate(27deg);}
   80% {transform: rotate(36deg);}
-  100% {transform: rotate(45deg);}
+  100% {transform: rotate(45deg); color: red}
+}
+
+@keyframes rotate-left {
+  0% {transform: rotate(45deg);  color: red}
+  20% {transform: rotate(36deg);}
+  40% {transform: rotate(27deg);}
+  60% {transform: rotate(18deg);}
+  80% {transform: rotate(9deg);}
+  100% {transform: rotate(0deg);  color: white}
 }
 
 @keyframes slide-down {
-    0%   {top:-250px;}
-    10%  {top:-225px;}
-    20%  {top:-200px;}
-    30%  {top:-175px;}
-    40%  {top:-150px;}
-    50%  {top:-125px;}
-    60%  {top:-100px;}
-    70%  {top:-75px;}
+    0%  {top:-450px;}
+    10%  {top:-400px;}
+    20%  {top:-350px;}
+    30%  {top:-300px;}
+    40%  {top:-250px;}
+    50%  {top:-200px;}
+    60%  {top:-150px;}
+    70%  {top:-100px;}
     80%  {top:-50px;}
-    90%  {top:-25px;}
-    100% {top:0px;}
+    90%  {top:0px;}
+    100% {top:50px;}
+}
+
+@keyframes slide-up {
+    0%   {top:50px;}
+    10%   {top:0px;}
+    20%  {top:-50px;}
+    30%  {top:-100px;}
+    40%  {top:-150px;}
+    50%  {top:-200px;}
+    60%  {top:-250px;}
+    70%  {top:-300px;}
+    80%  {top:-350px;}
+    90%  {top:-400px;}
+    100%  {top:-450px;}
 }
 
 #addIcon {
@@ -75,12 +98,16 @@
 }
 
 #productForm {
-  background-color: rgba(0,0,0,0.6);
-  position: relative;
+  background-color: rgba(0,0,0,0.9);
+  color: white;
+  position: absolute;
+  width: 80%;
   animation-duration: 0.5s;
   animation-timing-function: linear;
   animation-name: slide-down;
+  animation-fill-mode: forwards;
   padding: 10px;
+  z-index: 2;
 }
 
 .sidebar-left {
