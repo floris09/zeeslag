@@ -25,6 +25,9 @@ if (isset($_GET['logout'])) {
 
     function addProduct(){
 
+      var icon = document.getElementById('addIcon');
+      icon.style = 'animation-name: rotate';
+
       var formFields = ['name', 'category', 'location', 'description', 'price', 'type', 'state', 'size', 'color', 'brand', 'image'];
 
       var addForm = document.createElement('div');
@@ -164,7 +167,7 @@ if (isset($_GET['logout'])) {
 
   <div id='admin-nav'>
     <a href='index.php?logout=true'><div class="nav-div">Log Out</div></a>
-    <i onclick='addProduct()' class="fas fa-plus-circle nav-add-icon"></i>
+    <i id='addIcon' onclick='addProduct()' class="fas fa-plus-circle nav-add-icon"></i>
   </div>
 
   <div class='sidebar-left'>
