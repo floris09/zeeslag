@@ -117,6 +117,7 @@ if (isset($_GET['logout'])) {
 
       var submit = document.createElement('button');
       submit.onclick = submitProduct.bind(addForm);
+      submit.innerHTML = 'Submit';
       addForm.appendChild(submit);
 
       var container = document.getElementById('form-container');
@@ -126,24 +127,28 @@ if (isset($_GET['logout'])) {
     function submitProduct(){
         var obj = {};
         obj.name = document.getElementById('name').value;
-        // obj.user_id = document.getElementById('user_id').value;
-        obj.location_id = document.getElementById('location_id').value;
-        obj.category_id = document.getElementById('category_id').value;
-        obj.image_url = document.getElementById('image_url').value;
+        obj.location_id = document.getElementById('location').value;
+        obj.category_id = document.getElementById('category').value;
+        obj.image_url = document.getElementById('image').value;
         obj.description = document.getElementById('description').value;
         obj.price = document.getElementById('price').value;
-        obj.type = document.getElementById('type').value;
         obj.state = document.getElementById('state').value;
         obj.size = document.getElementById('size').value;
         obj.color = document.getElementById('color').value;
         obj.brand = document.getElementById('brand').value;
+
+        if(document.getElementById('image').value){
+          obj.image_url = document.getElementById('image').value;
+        } else {
+          obj.image_url = 'http://res.cloudinary.com/florismeininger/image/upload/v1521731445/marketplace/imageplaceholder.png';
+        }
+
         data = JSON.stringify(obj);
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-
-
+              console.log(xhttp.responseText);
             }
         };
         xhttp.open("POST", "../../private/actions/products/create.php", true);
