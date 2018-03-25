@@ -59,6 +59,42 @@
     return $products;
   }
 
+  function getUserProducts($id){
+    global $db;
+
+    $sql = "SELECT * FROM products ";
+    $sql = "WHERE user_id = $id";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+
+    $products = [];
+
+    if($result->num_rows > 0){
+      while($row = $result->fetch_assoc()){
+        $product = new Product();
+        $product->id = $row['id'];
+        $product->user_id = $row['user_id'];
+        $product->location_id = $row['location_id'];
+        $product->category_id = $row['category_id'];
+        $product->name = $row['name'];
+        $product->image_url = $row['image_url'];
+        $product->description = $row['description'];
+        $product->price = $row['price'];
+        $product->type = $row['type'];
+        $product->state = $row['state'];
+        $product->size = $row['size'];
+        $product->color = $row['color'];
+        $product->brand = $row['brand'];
+        $product->coordinates = $row['coordinates'];
+
+        $products[] = $product;
+      }
+    }
+
+    $products = json_encode($products);
+    return $products;
+  }
+
   function getRecentProducts($limit){
     global $db;
 
@@ -133,16 +169,17 @@
     return $surfboards;
   }
 
-  function getRecentSurfboards($limit){
+  function getRecentCategoryProducts($category_id, $limit){
     global $db;
 
-    $sql = "SELECT * FROM surfboards ";
+    $sql = "SELECT * FROM products ";
     $sql .= "ORDER BY id DESC ";
+    $sql = "WHERE category_id = $category_id ";
     $sql .= "LIMIT $limit";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
 
-    $surfboards = [];
+    $products = [];
 
     if($result->num_rows > 0){
       while($row = $result->fetch_assoc()){
@@ -161,14 +198,13 @@
         $product->color = $row['color'];
         $product->brand = $row['brand'];
         $product->coordinates = $row['coordinates'];
-        $product->volume = $row['volume'];
 
-        $surfboards[] = $surfboard;
+        $products[] = $product;
       }
     }
 
-    $surfboards = json_encode($surfboards);
-    return $surfboards;
+    $products = json_encode($products);
+    return $products;
   }
 
 
