@@ -25,6 +25,8 @@ if (isset($_GET['logout'])) {
 
   <script>
 
+    var userpage = false;
+
     function addProduct(){
 
       var icon = document.getElementById('addIcon');
@@ -123,6 +125,7 @@ if (isset($_GET['logout'])) {
 
       var submit = document.createElement('button');
       submit.onclick = submitProduct.bind(addForm);
+      submit.id = 'submit-product';
       submit.innerHTML = 'Submit';
       addForm.appendChild(submit);
 
@@ -173,7 +176,10 @@ if (isset($_GET['logout'])) {
               var container = document.getElementById('guest-products-container');
 
               container.insertBefore(productDiv, container.firstChild);
-              container.removeChild(container.lastChild);
+
+              if (window.userpage == false){
+                container.removeChild(container.lastChild);
+              }
             }
         };
         xhttp.open("POST", "../../private/actions/products/create.php", true);
@@ -197,6 +203,8 @@ if (isset($_GET['logout'])) {
     }
 
     function userPage(id){
+      window.userpage = true;
+
       var body = document.getElementById('guest-body');
       var productsContainer = document.getElementById('guests-all-products-container');
       body.removeChild(productsContainer);
@@ -270,6 +278,7 @@ if (isset($_GET['logout'])) {
     function editProduct(id){
 
     }
+    console.log(userpage);
 
   </script>
 
