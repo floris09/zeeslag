@@ -1,5 +1,5 @@
 #admin-body {
-  background-image: url('../images/wave.png');
+  background: url('../images/waves.jpeg');
   padding-top: 50px;
 }
 
@@ -38,7 +38,9 @@
 #guest-body {
   padding-top: 50px;
   padding-left: 150px;
-  background-image: url('../images/wave.png');
+  background: url('../images/jaws.jpg');
+  background-size: cover;
+  background-position: fixed;
 }
 
 @keyframes rotate-right {
@@ -92,10 +94,40 @@
   font-size: 30px;
   float: right;
   margin: 10px;
+  margin-right: 20px;
   animation-duration: 0.5s;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
+
+#userIcon {
+  color: white;
+  font-size: 30px;
+  float: right;
+  margin: 10px;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+#deleteDiv {
+  display: inline;
+  float: right;
+  color: red;
+  font-size: 25px;
+  margin-top: -6px;
+  margin-right: 5px;
+}
+
+#editDiv {
+  display: inline;
+  float: right;
+  color: white;
+  font-size: 27px;
+  margin-top: -6px;
+  margin-right: 5px;
+}
+
 
 #productForm {
   background-color: rgba(0,0,0,0.9);
@@ -155,6 +187,10 @@
   font-size: 15px;
 }
 
+.guest-products-container {
+  margin-bottom: 50px;
+}
+
 .admin-options-container {
   width: 200px;
   border: 1px solid black;
@@ -179,8 +215,9 @@
 }
 
 h3 {
-  font-family: monospace;
+  font-family: 'Cagliostro', sans-serif;
   margin-bottom: 10px;
+  margin-left: 30px;
 }
 
 input {

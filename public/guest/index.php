@@ -8,6 +8,7 @@ if (isset($_GET['logout'])) {
   logout();
   header('Location: ../index.php');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +18,7 @@ if (isset($_GET['logout'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Cagliostro" rel="stylesheet">
   <link rel='stylesheet' href=<?= '../styles/style.css?'.time(); ?> />
   <link rel="stylesheet" media="screen and (min-width: 900px)" href=<?= "../styles/widestyle.css?".time(); ?> >
   <title>Market Place</title>
@@ -154,6 +156,24 @@ if (isset($_GET['logout'])) {
             if (this.readyState == 4 && this.status == 200) {
               var form = document.getElementById('productForm');
               form.innerHTML = 'Your product has been added!';
+
+              var id = xhttp.responseText;
+              var productDiv = document.createElement('div');
+              productDiv.className = 'guest-product-div';
+              productDiv.id = 'prod-'+id;
+              var nameDiv = document.createElement('div');
+              nameDiv.className = 'guest-product-name-div';
+              nameDiv.innerHTML = obj.name + '<br>' + obj.price;
+              productDiv.appendChild(nameDiv);
+              var imageDiv = document.createElement('div');
+              imageDiv.className = 'guest-product-image-div';
+              imageDiv.style = "background-image:url("+obj.image_url+")";
+              productDiv.appendChild(imageDiv);
+
+              var container = document.getElementById('guest-products-container');
+
+              container.insertBefore(productDiv, container.firstChild);
+              container.removeChild(container.lastChild);
             }
         };
         xhttp.open("POST", "../../private/actions/products/create.php", true);
@@ -176,6 +196,80 @@ if (isset($_GET['logout'])) {
 
     }
 
+    function userPage(id){
+      var body = document.getElementById('guest-body');
+      var productsContainer = document.getElementById('guests-all-products-container');
+      body.removeChild(productsContainer);
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              var products = JSON.parse(xhttp.responseText);
+
+              products.forEach(function(product){
+                var productDiv = document.createElement('div');
+                productDiv.className = 'guest-product-div';
+                productDiv.id = 'prod-'+product.id;
+                var nameDiv = document.createElement('div');
+                nameDiv.className = 'guest-product-name-div';
+                nameDiv.innerHTML = product.name + '<br>' + product.price;
+                productDiv.appendChild(nameDiv);
+                var deleteDiv = document.createElement('div');
+                deleteDiv.id = 'deleteDiv';
+                deleteDiv.onclick = deleteProduct.bind(this, product.id);
+                var deleteIcon = document.createElement('i');
+                deleteIcon.className = "fas fa-trash-alt";
+                deleteDiv.appendChild(deleteIcon);
+                nameDiv.appendChild(deleteDiv);
+                var editDiv = document.createElement('div');
+                editDiv.id = 'editDiv';
+                editDiv.onclick = editProduct.bind(this, product.id);
+                var editIcon = document.createElement('i');
+                editIcon.className = "fas fa-pen-square";
+                editDiv.appendChild(editIcon);
+                nameDiv.appendChild(editDiv);
+                var imageDiv = document.createElement('div');
+                imageDiv.className = 'guest-product-image-div';
+                imageDiv.style = "background-image:url("+product.image_url+")";
+                productDiv.appendChild(imageDiv);
+
+                var container = document.createElement('div');
+                container.id = 'guest-products-container';
+                container.style = 'display:inline';
+
+                container.appendChild(productDiv);
+                body.appendChild(container);
+              });
+          }
+        };
+        xhttp.open("GET", "../../private/actions/products/getUserProducts.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send();
+    }
+
+    function deleteProduct(id){
+      var obj = {};
+      obj.id = id;
+      data = JSON.stringify(obj);
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            console.log("successfully deleted");
+
+            var div = document.getElementById("prod-"+id);
+            var parent = div.parentNode;
+            parent.removeChild(div);
+          }
+      };
+      xhttp.open("POST", "../../private/actions/products/delete.php", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("data="+data);
+    }
+
+    function editProduct(id){
+
+    }
 
   </script>
 
@@ -185,11 +279,14 @@ if (isset($_GET['logout'])) {
   <div id='admin-nav'>
     <a href='index.php?logout=true'><div class="nav-div">Log Out</div></a>
     <i id='addIcon' onclick='addProduct()' class="fas fa-plus-circle nav-add-icon"></i>
+    <i id=userIcon onclick='userPage(<?= $_SESSION['user']['id']?>)' class="fas fa-user-circle nav-add-icon"></i>
+
   </div>
 
   <div class='sidebar-left'>
     <?php include('../../private/shared/guestCategories.php'); ?>
   </div>
+
 
   <div id='form-container'></div>
 

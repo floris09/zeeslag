@@ -1,13 +1,13 @@
 <?php
-    $products = getRecentProducts(3);
-    $surfboards = getRecentSurfboards(3);
+    $products = getRecentProducts(6);
+    // $surfboards = getRecentCategoryProducts($surfboards_id, 3);
+    // echo $surfboards_id;
     $products = json_decode($products);
-    $surfboards = json_decode($surfboards); ?>
+    // $surfboards = json_decode($surfboards); ?>
 
 
-
-<div class='guest-products-container'>
   <h3>New Products</h3>
+<div id='guest-products-container'>
   <?php
     foreach ($products as $product) {
       echo "<div class='guest-product-div' id='prod-$product->id'>
@@ -16,17 +16,6 @@
                 $product->price IDR
               </div>
               <div class='guest-product-image-div' style='background-image:url($product->image_url)'></div>
-            </div>";
-    }
-  ?>
-</div>
-
-<div class='guest-surfboards-container'>
-  <h3>New Surfboards<h3>
-  <?php
-    foreach ($surfboards as $surfboard) {
-      echo "<div class='guest-product-div' id='surf-$surfboard->id'>
-              $surfboard->name
             </div>";
     }
   ?>
