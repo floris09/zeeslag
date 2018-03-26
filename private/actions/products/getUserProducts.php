@@ -5,7 +5,8 @@
   $id = $_SESSION['user']['id'];
 
   $sql = "SELECT * FROM products ";
-  $sql .= "WHERE user_id = $id";
+  $sql .= "WHERE user_id = $id ";
+  $sql .= "ORDER BY id DESC ";
   $result = mysqli_query($db, $sql);
   confirm_result_set($result);
 
