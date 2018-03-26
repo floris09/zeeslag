@@ -215,6 +215,18 @@ if (isset($_GET['logout'])) {
                 nameDiv.className = 'guest-product-name-div';
                 nameDiv.innerHTML = product.name + '<br>' + product.price;
                 productDiv.appendChild(nameDiv);
+                var deleteDiv = document.createElement('div');
+                deleteDiv.id = 'deleteDiv';
+                var deleteIcon = document.createElement('i');
+                deleteIcon.className = "fas fa-trash-alt";
+                deleteDiv.appendChild(deleteIcon);
+                nameDiv.appendChild(deleteDiv);
+                var editDiv = document.createElement('div');
+                editDiv.id = 'editDiv';
+                var editIcon = document.createElement('i');
+                editIcon.className = "fas fa-pen-square";
+                editDiv.appendChild(editIcon);
+                nameDiv.appendChild(editDiv);
                 var imageDiv = document.createElement('div');
                 imageDiv.className = 'guest-product-image-div';
                 imageDiv.style = "background-image:url("+product.image_url+")";

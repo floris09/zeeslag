@@ -110,6 +110,25 @@
   animation-fill-mode: forwards;
 }
 
+#deleteDiv {
+  display: inline;
+  float: right;
+  color: red;
+  font-size: 25px;
+  margin-top: -6px;
+  margin-right: 5px;
+}
+
+#editDiv {
+  display: inline;
+  float: right;
+  color: white;
+  font-size: 27px;
+  margin-top: -6px;
+  margin-right: 5px;
+}
+
+
 #productForm {
   background-color: rgba(0,0,0,0.9);
   color: white;
