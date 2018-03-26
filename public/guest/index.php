@@ -204,7 +204,6 @@ if (isset($_GET['logout'])) {
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-              console.log(xhttp.responseText);
               var products = JSON.parse(xhttp.responseText);
 
               products.forEach(function(product){
@@ -217,12 +216,14 @@ if (isset($_GET['logout'])) {
                 productDiv.appendChild(nameDiv);
                 var deleteDiv = document.createElement('div');
                 deleteDiv.id = 'deleteDiv';
+                deleteDiv.onclick = deleteProduct.bind(this, product.id);
                 var deleteIcon = document.createElement('i');
                 deleteIcon.className = "fas fa-trash-alt";
                 deleteDiv.appendChild(deleteIcon);
                 nameDiv.appendChild(deleteDiv);
                 var editDiv = document.createElement('div');
                 editDiv.id = 'editDiv';
+                editDiv.onclick = editProduct.bind(this, product.id);
                 var editIcon = document.createElement('i');
                 editIcon.className = "fas fa-pen-square";
                 editDiv.appendChild(editIcon);
@@ -244,6 +245,30 @@ if (isset($_GET['logout'])) {
         xhttp.open("GET", "../../private/actions/products/getUserProducts.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send();
+    }
+
+    function deleteProduct(id){
+      var obj = {};
+      obj.id = id;
+      data = JSON.stringify(obj);
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            console.log("successfully deleted");
+
+            var div = document.getElementById("prod-"+id);
+            var parent = div.parentNode;
+            parent.removeChild(div);
+          }
+      };
+      xhttp.open("POST", "../../private/actions/products/delete.php", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("data="+data);
+    }
+
+    function editProduct(id){
+
     }
 
   </script>
