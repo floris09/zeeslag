@@ -146,11 +146,12 @@ if (isset($_GET['logout'])) {
         obj.brand = document.getElementById('brand').value;
 
         if(document.getElementById('image').value){
-          obj.image_url = document.getElementById('image').value;
+          obj.image_url = document.getElementById('image').files[0];
           console.log(obj.image_url);
         } else {
           obj.image_url = 'http://res.cloudinary.com/florismeininger/image/upload/v1521731445/marketplace/imageplaceholder.png';
         }
+
 
         data = JSON.stringify(obj);
         console.log(data);
@@ -319,6 +320,7 @@ if (isset($_GET['logout'])) {
   <div id='guests-all-products-container'>
     <?php include('../../private/shared/guestProducts.php'); ?>
   </div>
+
 </body>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

@@ -1,5 +1,8 @@
 <?php
   require_once('../../initialize.php');
+  require_once('../../cloudinary/Cloudinary.php');
+  require_once('../../cloudinary/Uploader.php');
+  require_once('../../cloudinary/Api.php');
 
   if(isset($_POST['data'])){
 
@@ -19,6 +22,9 @@
     $brand = $obj->brand;
 
     global $db;
+    print_r($_FILES["file"]);
+
+    $result = \Cloudinary\Uploader::upload($image_url);
 
     $sql = "INSERT INTO products ";
     $sql .= "(user_id, location_id, category_id, name, image_url, description, ";
