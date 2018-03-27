@@ -1,7 +1,6 @@
 <?php
   require_once('../../initialize.php');
 
-
   if(isset($_POST['data'])){
 
     header("Content-type: application/json; charset=UTF-8");
@@ -20,7 +19,6 @@
     $brand = $obj->brand;
 
     global $db;
-
 
     $sql = "INSERT INTO products ";
     $sql .= "(user_id, location_id, category_id, name, image_url, description, ";

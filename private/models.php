@@ -27,7 +27,7 @@ class Product {
   public $location_id;
   public $category_id;
   public $name;
-  public $image_url = 'http://res.cloudinary.com/florismeininger/image/upload/v1521731445/marketplace/imageplaceholder.png';
+  public $image_url;
   public $description;
   public $price;
   public $type;

@@ -138,7 +138,6 @@ if (isset($_GET['logout'])) {
         obj.name = document.getElementById('name').value;
         obj.location_id = document.getElementById('location').value;
         obj.category_id = document.getElementById('category').value;
-        obj.image_url = document.getElementById('image').value;
         obj.description = document.getElementById('description').value;
         obj.price = document.getElementById('price').value;
         obj.state = document.getElementById('state').value;
@@ -148,17 +147,21 @@ if (isset($_GET['logout'])) {
 
         if(document.getElementById('image').value){
           obj.image_url = document.getElementById('image').value;
+          console.log(obj.image_url);
         } else {
           obj.image_url = 'http://res.cloudinary.com/florismeininger/image/upload/v1521731445/marketplace/imageplaceholder.png';
         }
 
         data = JSON.stringify(obj);
+        console.log(data);
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               var form = document.getElementById('productForm');
               form.innerHTML = 'Your product has been added!';
+
+              console.log(xhttp.responseText);
 
               var id = xhttp.responseText;
               var productDiv = document.createElement('div');
@@ -179,6 +182,21 @@ if (isset($_GET['logout'])) {
 
               if (window.userpage == false){
                 container.removeChild(container.lastChild);
+              } else {
+                var deleteDiv = document.createElement('div');
+                deleteDiv.id = 'deleteDiv';
+                deleteDiv.onclick = deleteProduct.bind(this, id);
+                var deleteIcon = document.createElement('i');
+                deleteIcon.className = "fas fa-trash-alt";
+                deleteDiv.appendChild(deleteIcon);
+                nameDiv.appendChild(deleteDiv);
+                var editDiv = document.createElement('div');
+                editDiv.id = 'editDiv';
+                editDiv.onclick = editProduct.bind(this, id);
+                var editIcon = document.createElement('i');
+                editIcon.className = "fas fa-pen-square";
+                editDiv.appendChild(editIcon);
+                nameDiv.appendChild(editDiv);
               }
             }
         };
@@ -278,7 +296,6 @@ if (isset($_GET['logout'])) {
     function editProduct(id){
 
     }
-    console.log(userpage);
 
   </script>
 
