@@ -8,6 +8,7 @@
   define("SHARED_PATH", PRIVATE_PATH . '/shared');
   define("WWW_ROOT", '../public');
 
+  require_once('credentials.php');
   require_once('functions.php');
   require_once('database.php');
   require_once('query_functions.php');
