@@ -1,0 +1,7 @@
+function nieuweRekening(){
+
+
+alert("hoi");
+
+
+}

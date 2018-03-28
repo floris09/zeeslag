@@ -16,10 +16,13 @@ class Rekening {
 
 class Transactie {
   public $id;
-  public $rekening1_id;
-  public $rekening2_id;
-  public $datum;
-  public $hoeveelheid;
+  public $vanRekening;
+  public $naarRekening;
+  public $vanBankCode;
+  public $naarBankCode;
+  public $timestamp;
+  public $waarde;
+  public $opmerking;
 }
 
 class User {
