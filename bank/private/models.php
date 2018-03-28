@@ -80,6 +80,31 @@ class MegaDAO {
     $rekeningen = json_encode($rekeningen);
     return $rekeningen;
   }
+
+  public function getRekening($reknr){
+    global $db;
+
+    $sql = "SELECT * FROM fn_rekeningen ";
+    $sql .= "WHERE rekeningNummer = $reknr ";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+
+    $rekeningen = [];
+
+    if($result->num_rows > 0){
+        $row = $result->fetch_assoc();
+
+        $rekening = new Rekening();
+        $rekening->gebruiker_id = $row['gebruiker_id'];
+        $rekening->rekeningNummer = $row['rekeningNummer'];
+        $rekening->waarde = $row['waarde'];
+
+    }
+
+    $rekening = json_encode($rekening);
+    return $rekening;
+  }
 }
+
 
  ?>

@@ -42,7 +42,9 @@ if (isset($_GET['logout'])) {
         $results = json_decode($results);
 
         foreach ($results as $result) {
-          echo "<div class='rekening$result->rekeningNummer'>" .rekeningNr($result->rekeningNummer). " - &euro;$result->waarde</div>";
+          $reknr = $result->rekeningNummer;
+          $waarde = $result->waarde;
+          echo "<div class='rekening$reknr' onclick='rekeningPagina($reknr)'>" .rekeningNr($reknr). " - &euro;$waarde</div>";
         }
       ?>
     </div>
