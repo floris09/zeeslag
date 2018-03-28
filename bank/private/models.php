@@ -8,7 +8,6 @@ class Bank {
 }
 
 class Rekening {
-  public $id;
   public $gebruiker_id;
   public $rekeningNummer;
   public $waarde;
@@ -49,7 +48,7 @@ class MegaDAO {
 
     $result = mysqli_query($db, $sql);
     if ($result) {
-      echo $db->insert_id;
+      return $db->insert_id;
     } else {
       echo mysqli_error($db) . ". Please try again.";
       db_disconnect($db);
@@ -57,6 +56,30 @@ class MegaDAO {
     }
   }
 
+  public function getUserRekeningen($id){
+    global $db;
+
+    $sql = "SELECT * FROM fn_rekeningen ";
+    $sql .= "WHERE gebruiker_id = $id ";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+
+    $rekeningen = [];
+
+    if($result->num_rows > 0){
+      while($row = $result->fetch_assoc()){
+        $rekening = new Rekening();
+        $rekening->gebruiker_id = $row['gebruiker_id'];
+        $rekening->rekeningNummer = $row['rekeningNummer'];
+        $rekening->waarde = $row['waarde'];
+
+        $rekeningen[] = $rekening;
+      }
+    }
+
+    $rekeningen = json_encode($rekeningen);
+    return $rekeningen;
+  }
 }
 
  ?>

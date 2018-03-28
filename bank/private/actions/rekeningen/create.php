@@ -8,8 +8,8 @@
     $obj = json_decode($_POST['data'],false);
 
     $dao = new MegaDAO();
-    $result = $dao->createRekening($obj);
-    echo $result;
+    echo $dao->createRekening($obj);
+
   }
 
   ob_end_flush();
