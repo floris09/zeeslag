@@ -33,11 +33,20 @@ if (isset($_GET['logout'])) {
       <a href='index.php?logout=true'><div class="nav-div">Log Out</div></a>
     </div>
 
-<button onclick="nieuweRekening(<?= $_SESSION['user']['id']; ?>)">Rekening Openen</button>
+    <button onclick="nieuweRekening(<?= $_SESSION['user']['id']; ?>)">Rekening Openen</button>
 
-<input type="number" id="" name="">
+    <div id='rekeningen'>
+      <?php
+        $dao = new MegaDAO();
+        $results = $dao->getUserRekeningen($_SESSION['user']['id']);
+        $results = json_decode($results);
 
-  </div>
+        foreach ($results as $result) {
+          echo "<div class='rekening$result->rekeningNummer'>" .rekeningNr($result->rekeningNummer). " - &euro;$result->waarde</div>";
+        }
+      ?>
+    </div>
+
   </div>
 
 </body>
