@@ -39,4 +39,24 @@ class User {
   public $admin;
 }
 
+class MegaDAO {
+
+  public function createRekening($obj){
+    global $db;
+
+    $sql = "INSERT INTO fn_rekeningen ";
+    $sql .= "(gebruiker_id, waarde) VALUE ('$obj->gebruiker_id', '$obj->waarde')";
+
+    $result = mysqli_query($db, $sql);
+    if ($result) {
+      echo $db->insert_id;
+    } else {
+      echo mysqli_error($db) . ". Please try again.";
+      db_disconnect($db);
+      exit;
+    }
+  }
+
+}
+
  ?>

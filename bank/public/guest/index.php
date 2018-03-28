@@ -33,7 +33,7 @@ if (isset($_GET['logout'])) {
       <a href='index.php?logout=true'><div class="nav-div">Log Out</div></a>
     </div>
 
-<button onclick="nieuweRekening()">Rekening Openen</button>
+<button onclick="nieuweRekening(<?= $_SESSION['user']['id']; ?>)">Rekening Openen</button>
 
 <input type="number" id="" name="">
 
