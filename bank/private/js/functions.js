@@ -4,6 +4,7 @@ function createRekeningDiv(reknr, waarde){
   var div = document.createElement('div');
   div.class = 'rekening'+reknr;
   div.innerHTML = reknr + " - &euro;" + waarde;
+  div.onclick = rekeningPagina.bind(this,reknr);
 
   var container = document.getElementById('rekeningen');
   container.appendChild(div);
@@ -29,6 +30,12 @@ function rekeningNr(id){
       return "FNB" + id;
       break;
   }
+}
+
+// ---------------------- LOCATIE HEADERS -----------------------
+
+function rekeningPagina(reknr){
+  window.location = './show.php?reknr='+reknr;
 }
 
 // --------------------- REQUESTS -----------------------
