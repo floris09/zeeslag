@@ -1,7 +1,7 @@
 <?php
   $errorMessage = '';
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (isset($_POST['login'])) {
     $username = $_POST["username"];
     $query = find_user($username);
     $user = mysqli_fetch_assoc($query);
@@ -11,10 +11,10 @@
 
     if ($valid && $admin) {
       $_SESSION['user'] = $user;
-      header('Location: ./admin/index.php');
+      header('Location: ./public/admin/index.php');
     } elseif ($valid) {
       $_SESSION['user'] = $user;
-      header('Location: ./guest/index.php');
+      header('Location: ./public/guest/index.php');
     } else {
       $errorMessage = "Incorrect username and/or password. Please try again.";
     }
@@ -28,6 +28,6 @@
 
     <input type='password' id='password' name='password' placeholder='Password...'>
 
-    <input type='submit' value='submit'>
+    <input type='submit' name='login' value='submit'>
   </form>
 </div>
