@@ -104,6 +104,69 @@ class MegaDAO {
     $rekening = json_encode($rekening);
     return $rekening;
   }
+
+  public function updateRekening($nr, $waarde){
+    global $db;
+
+    $sql = "UPDATE fn_rekeningen SET waarde = waarde + $waarde ";
+    $sql .= "WHERE rekeningNummer = '$nr'";
+
+    $result = mysqli_query($db, $sql);
+    if ($result) {
+      return $result;
+    } else {
+      echo mysqli_error($db) . ". Please try again.";
+      db_disconnect($db);
+      exit;
+    }
+  }
+
+    public function getRekeningTransacties($reknr){
+      global $db;
+
+      $sql = "SELECT * FROM fn_transacties ";
+      $sql .= "WHERE vanRekening = $reknr OR naarRekening = $reknr ";
+      $result = mysqli_query($db, $sql);
+      confirm_result_set($result);
+
+      $transacties = [];
+
+      if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){
+          $transactie = new Transactie();
+          $transactie->vanRekening = $row['vanRekening'];
+          $transactie->naarRekening = $row['naarRekening'];
+          $transactie->waarde = $row['waarde'];
+          $transactie->timestamp = $row['timestamp'];
+          $transactie->opmerking = $row['opmerking'];
+
+          $transacties[] = $transactie;
+        }
+      }
+
+      $transacties = json_encode($transacties);
+      return $transacties;
+    }
+
+  public function createTransactie($obj){
+    global $db;
+
+    $sql = "INSERT INTO fn_transacties ";
+    $sql .= "(vanRekening, naarRekening, vanBankCode, naarBankCode, waarde, timestamp, opmerking) ";
+    $sql .= "VALUES ('$obj->vanRekening', '$obj->naarRekening', '$obj->vanBankCode', ";
+    $sql .= "'$obj->naarBankCode', '$obj->waarde', '$obj->timestamp', '$obj->opmerking')";
+
+    $result = mysqli_query($db, $sql);
+    if ($result) {
+      $this->updateRekening($obj->vanRekening, -$obj->waarde);
+      $this->updateRekening($obj->naarRekening, $obj->waarde);
+      return $db->insert_id;
+    } else {
+      echo mysqli_error($db) . ". Please try again.";
+      db_disconnect($db);
+      exit;
+    }
+  }
 }
 
 
