@@ -3,7 +3,7 @@
 function createRekeningDiv(reknr, waarde){
   var div = document.createElement('div');
   div.class = 'rekening'+reknr;
-  div.innerHTML = reknr + " - &euro;" + waarde;
+  div.innerHTML = rekeningNr(reknr) + " - &euro;" + waarde;
   div.onclick = rekeningPagina.bind(this,reknr);
 
   var container = document.getElementById('rekeningen');
@@ -54,7 +54,7 @@ function nieuweRekening(id){
         console.log(xhttp.responseText);
 
         var rekeningNummer = rekeningNr(xhttp.responseText);
-        createRekeningDiv(rekeningNummer, obj.waarde);
+        createRekeningDiv(xhttp.responseText, obj.waarde);
 
       }
   };
@@ -63,4 +63,30 @@ function nieuweRekening(id){
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send("data="+data);
 
+}
+
+function transactie(reknr){
+
+  var obj = {}
+  obj.waarde = document.getElementById('waarde').value;
+  obj.vanRekening = reknr;
+  obj.naarRekening = document.getElementById('naarRekening').value;
+  obj.vanBankCode = 'FNB';
+  obj.naarBankCode = 'FNB';
+  obj.timestamp = new Date();
+  obj.opmerking = document.getElementById('opmerking').value;
+
+    var data = JSON.stringify(obj);
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(xhttp.responseText);
+          location.reload();
+        }
+    };
+
+    xhttp.open("POST", "../../private/actions/transacties/create.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("data="+data);
 }
