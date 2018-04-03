@@ -1,0 +1,167 @@
+.Inloggen {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1920px;
+  height: 1080px;
+  z-index: 19;
+}
+.Inloggen {
+  font-size: 30px;
+  font-family: "Avenir Next";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  position: absolute;
+  left: 292px;
+  top: 604.068px;
+  width: 128px;
+  height: 30px;
+  z-index: 18;
+}
+.Rechthoek_4 {
+  background-color: rgb(232, 78, 15);
+  position: absolute;
+  left: 141px;
+  top: 592px;
+  width: 428px;
+  height: 61px;
+  z-index: 17;
+}
+.Rechthoek_3 {
+  border-width: 1px;
+  border-color: rgb(232, 149, 115);
+  border-style: solid;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 147px;
+  top: 521px;
+  width: 17px;
+  height: 17px;
+  z-index: 16;
+}
+.Rechthoek_2_kopiëren {
+  background-color: rgb(232, 149, 115);
+  position: absolute;
+  left: 141px;
+  top: 489px;
+  width: 428px;
+  height: 1px;
+  z-index: 15;
+}
+.Nog_geen_lid_van_FNB__Meld_je_aan_ {
+  font-size: 20px;
+  font-family: "Avenir Next";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 141px;
+  top: 850.045px;
+  width: 343px;
+  height: 20px;
+  z-index: 14;
+}
+.Wachtwoord_vergeten_ {
+  font-size: 20px;
+  font-family: "Avenir Next";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 140.437px;
+  top: 797.779px;
+  width: 220px;
+  height: 20px;
+  z-index: 13;
+}
+.Onthoud_mijn_gebruikersnaam {
+  font-size: 20px;
+  font-family: "Avenir Next";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 179px;
+  top: 521.045px;
+  width: 292px;
+  height: 20px;
+  z-index: 12;
+}
+.Wachtwoord {
+  font-size: 20px;
+  font-family: "Avenir Next";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 141.437px;
+  top: 433.779px;
+  width: 118px;
+  height: 15px;
+  z-index: 11;
+}
+.Rechthoek_2 {
+  background-color: rgb(232, 149, 115);
+  position: absolute;
+  left: 141px;
+  top: 377px;
+  width: 428px;
+  height: 1px;
+  z-index: 10;
+}
+.Gebruikersnaam {
+  font-size: 20px;
+  font-family: "Avenir Next";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 142px;
+  top: 320.045px;
+  width: 154px;
+  height: 15px;
+  z-index: 9;
+}
+.Log_in_op_uw_account {
+  font-size: 20px;
+  font-family: "Avenir Next";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 156.162px;
+  top: 249.92px;
+  width: 205px;
+  height: 19px;
+  z-index: 8;
+}
+.Welkom_terug {
+  font-size: 45px;
+  font-family: "Avenir Next";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 156.427px;
+  top: 194.586px;
+  width: 296px;
+  height: 45px;
+  z-index: 7;
+}
+.Inloggen {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 8176px;
+  height: 1080px;
+  z-index: 5;
+}
+.Rechthoek_1 {
+  background-color: rgb(232, 78, 15);
+  position: absolute;
+  left: -1px;
+  top: 113px;
+  width: 624px;
+  height: 3px;
+  z-index: 4;
+}
